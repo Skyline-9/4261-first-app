@@ -108,3 +108,4 @@ These are the folders and the functionality
 - [Using Environmental Variables](https://medium.com/swlh/how-to-properly-use-environment-variables-in-an-expo-react-native-app-7ab852590b30)
 - [.dotenv Formatting](https://hexdocs.pm/dotenvy/dotenv-file-format.html)
 - [Firebase Config](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
+- [Cloud Firestore with React Native - Medium Article Tutorial](https://medium.com/geekculture/using-firestore-in-react-native-app-3995356e0b73)
