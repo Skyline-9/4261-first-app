@@ -1,39 +1,30 @@
-import { Provider } from 'react-redux';
-import React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { PersistGate } from 'redux-persist/integration/react';
-import { NavigationContainer } from '@react-navigation/native';
-import { colors } from './src/styles';
+import React from "react";
+import AppNavigator from "./src/navigation/AppNavigator";
+import { AuthProvider } from "./src/provider/AuthProvider";
+import { ThemeProvider } from "react-native-rapi-ui";
+import { LogBox } from "react-native";
 
-import { store, persistor } from './src/redux/store';
+export default function App(props) {
+  const images = [
+    require("./assets/icon.png"),
+    require("./assets/splash.png"),
+    require("./assets/login.png"),
+    require("./assets/register.png"),
+    require("./assets/forget.png"),
+  ];
 
-import AppView from './src/modules/AppViewContainer';
+  // Ignore firebase v9 AsyncStorage warning
+  React.useEffect(() => {
+    LogBox.ignoreLogs([
+      "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-async-storage/async-storage' instead of 'react-native'. See https://github.com/react-native-async-storage/async-storage",
+    ]);
+  }, []);
 
-export default function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <PersistGate
-          loading={
-            // eslint-disable-next-line react/jsx-wrap-multilines
-            <View style={styles.container}>
-              <ActivityIndicator color={colors.red} />
-            </View>
-          }
-          persistor={persistor}
-        >
-          <AppView />
-        </PersistGate>
-      </NavigationContainer>
-    </Provider>
+    <ThemeProvider images={images}>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-});

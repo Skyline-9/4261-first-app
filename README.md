@@ -1,89 +1,110 @@
-# React Native Starter 🚀
+# CS4261 First App
 
-[View Demo](https://play.google.com/store/apps/details?id=com.reactnativestarter.upd) | [Download](https://github.com/flatlogic/react-native-starter.git) | [More templates](https://flatlogic.com/templates) | [Support forum](https://flatlogic.com/forum)
+Template starter with React Navigation and Firebase auth using React Context
 
-*You're viewing the new and updated version of React Native Starter, previous version can be found under the [v1 branch](https://github.com/flatlogic/react-native-starter/tree/v1)*
+# Preview
 
-A powerful react native starter template that bootstraps development of your mobile application. React Native Starter is a mobile application template with lots of built-in components like sidebar, navigation, form elements, etc - all you need to start building your mobile app faster. Check out live demo on [App Store](https://play.google.com/store/apps/details?id=com.reactnativestarter.lite), [Google Play](https://play.google.com/store/apps/details?id=com.reactnativestarter.app).
+![../media/authflow.png](../media/authflow.png)
 
-![React Native Starter](https://i.imgur.com/vcz4bU6.png)
+# Installation
 
-<a href='https://play.google.com/store/apps/details?id=com.reactnativestarter.upd'><img width="200" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
-<a href='https://play.google.com/store/apps/details?id=com.reactnativestarter.upd'><img width="200" alt='Download on App Store' src='https://i.imgur.com/7IxtMV0.png'/></a>
+1. Install [node.js](https://nodejs.org/en/)
+2. Install Expo
 
-## What's inside
+   ```sh
+   npm install --global expo-cli
+   ```
 
-- Always up-to-date React Native scaffolding
-- UI/UX Design from industry experts
-- Modular and well-documented structure for application code
-- Redux for state management
-- React Navigation for simple navigation
-- Disk-persisted application state caching
-- More than 16 Ready-to-use Pages
+3. Download this repo
+4. Install deps on your template folder
 
-## Getting Started
+   ```sh
+   npm install
+   ```
 
-#### 1. Clone and Install
+5. Start the environtment
 
-```bash
-# Clone the repo
-git clone https://github.com/flatlogic/react-native-starter.git
+   ```sh
+   sh start.sh
+   ```
 
-# Navigate to clonned folder and Install dependencies
-cd react-native-starter && yarn install
+# Auth Flow
 
-# Install Pods
-cd ios && pod install
+### Firebase Setup
+
+- Set up a new firebase project
+- Go to Authentication and under Sign-in Method enable Email/Password
+- Go to project overview and create iOS app
+- Fill this firebase config to your config inside `./src/navigation/AppNavigator.js`
+
+```jsx
+// Better put your these secret keys in .env file
+const firebaseConfig = {
+	apiKey: '',
+	authDomain: '',
+	databaseURL: '',
+	projectId: '',
+	storageBucket: '',
+	messagingSenderId: '',
+	appId: '',
+};
 ```
 
-#### 2. Open RNS in your iOS simulator
+### Prebuilt UI Screens
 
-Run this command to start the development server and to start your app on iOS simulator:
+There are 3 screens included inside `./src/screens/auth` and one more thing its included with the firebase auth function, so you don't need to create the function. The ilustrations I use [undraw](https://undraw.co/)
+
+- Login screen `./src/screens/auth/login.tsx`
+- Register screen `./src/screens/auth/register.tsx`
+- Forget password screen `./src/screens/auth/forget.tsx`
+
+I personally use these screens on my project [TiktTeng](https://github.com/codingki/TikTeng) in early stages before the redesign, feel free to use these screens ❤️
+
+### React Navigation Auth Flow
+
+The checking logged users process is inside `./src/provider/AuthProvider` I use React Context, you can add more functions like get the data of the user and store it to the context (better static data, ex: uid)
+
+Inside the navigator `./src/navigation/AppNavigator.js`
+There's 2 stack navigator :
+
+- `<Auth/>` → for not logged in users stack
+- `<Main/>` → for logged in users stack
+- `<Loading/>` → when checking if the user is logged in or not loading screen
+
+```jsx
+export default () => {
+	const auth = useContext(AuthContext);
+	const user = auth.user;
+	return (
+		<NavigationContainer>
+			{user == null && <Loading />}
+			{user == false && <Auth />}
+			{user == true && <Main />}
+		</NavigationContainer>
+	);
+};
 ```
-yarn run:ios
+
+## Rapi UI
+
+![../media/hero.png](../media/hero.png)
+
+These UI components are provided by [Rapi UI](https://rapi-ui.kikiding.space/).
+Check the [documentation](https://rapi-ui.kikiding.space/docs/) for usage and more components.
+
+# File Managements
+
+These are the folders and the functionality
+
+```
+/src/assets -> for media such as images, etc
+/src/components -> for components
+/src/navigation -> for React Navigation
+/src/provider -> for React Context
+/src/screens -> for Screens
 ```
 
-Or, if you prefer Android:
-```
-yarn run:android
-```
-
-That's it! Cool, right?
-
-## Documentation
-
-Our handy documentation can be found on official RNS website: https://docs.reactnativestarter.com 
-
-## Contributing
-
-If you find any problems, please [open an issue](https://github.com/flatlogic/react-native-starter/issues/new) or submit a fix as a pull request.
-
-## Want more?
-
-We have a premium version of this mobile application template that saves you even more time and money and comes with advanced features:
-- Premium RED color scheme
-- More than 5 additional screens (such as chat, profile, product item, etc.)
-- Contains an extended charting library to visualize all the data you need
-- Premium support and updates included
-- Much, much more..
-
-Read more and purchase it at https://reactnativestarter.com
-
-## Support
-For any additional information please go to our [**support forum**](https://flatlogic.com/forum) and raise your questions or feedback provide there. We highly appreciate your participation!
-
-## How can I support developers?
-- Star our GitHub repo :star:
-- [Tweet about it](https://twitter.com/intent/tweet?text=Amazing%20Mobile%20Application%20Template%20built%20with%20React%20Native!&url=https://github.com/flatlogic/react-native-starter&via=flatlogic).
-- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
-- Follow [@flatlogic on Twitter](https://twitter.com/flatlogic).
-- Subscribe to React Native Starter newsletter at [reactnativestarter.com](https://reactnativestarter.com/)
-- Like our page on [Facebook](https://www.facebook.com/flatlogic/) :thumbsup:
-
-## More from Flatlogic
-- [✔️Awesome Bootstrap Checkboxes & Radios](https://github.com/flatlogic/awesome-bootstrap-checkbox) - Pure css way to make inputs look prettier
-- [💥Sing App Dashboard](https://github.com/flatlogic/sing-app) - Free and open-source admin dashboard template built with Bootstrap 4 
-
-## License
-
-[Mozilla Public License 2.0](LICENSE)
+# Links used
+- [Using Environmental Variables](https://medium.com/swlh/how-to-properly-use-environment-variables-in-an-expo-react-native-app-7ab852590b30)
+- [.dotenv Formatting](https://hexdocs.pm/dotenvy/dotenv-file-format.html)
+- [Firebase Config](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
