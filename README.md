@@ -25,7 +25,7 @@ Template starter with React Navigation and Firebase auth using React Context
 5. Start the environtment
 
    ```sh
-   sh start.sh
+   yarn start
    ```
 
 # Auth Flow
