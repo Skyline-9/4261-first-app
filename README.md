@@ -109,3 +109,5 @@ These are the folders and the functionality
 - [.dotenv Formatting](https://hexdocs.pm/dotenvy/dotenv-file-format.html)
 - [Firebase Config](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
 - [Cloud Firestore with React Native - Medium Article Tutorial](https://medium.com/geekculture/using-firestore-in-react-native-app-3995356e0b73)
+- [Rapi UI Library](https://rapi-ui.kikiding.space/docs/)
+- [Firestore Tutorial](https://www.freecodecamp.org/news/react-native-firebase-tutorial/)
