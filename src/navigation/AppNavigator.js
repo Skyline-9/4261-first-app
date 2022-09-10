@@ -3,7 +3,7 @@ import {getApps, initializeApp} from "firebase/app";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {AuthContext} from "../provider/AuthProvider";
-import {API_KEY, APP_ID, MESSAGING_SENDER_ID, PROJECT_ID, STORAGE_BUCKET} from '@env'
+import {API_KEY, APP_ID, AUTH_DOMAIN, DATABASE_URL, MESSAGING_SENDER_ID, PROJECT_ID, STORAGE_BUCKET} from '@env'
 
 // Main
 import Home from "../screens/Home";
@@ -19,8 +19,8 @@ import Loading from "../screens/utils/Loading";
 // Better put your these secret keys in .env file
 const firebaseConfig = {
     apiKey: API_KEY,
-    authDomain: "",
-    databaseURL: "",
+    authDomain: AUTH_DOMAIN,
+    databaseURL: DATABASE_URL,
     projectId: PROJECT_ID,
     storageBucket: STORAGE_BUCKET,
     messagingSenderId: MESSAGING_SENDER_ID,
