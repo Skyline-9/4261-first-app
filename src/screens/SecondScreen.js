@@ -2,6 +2,7 @@ import React from "react";
 import {View} from "react-native";
 import {Layout, Text, themeColor, TopNav, useTheme,} from "react-native-rapi-ui";
 import {Ionicons} from "@expo/vector-icons";
+import firestore from '@react-native-firebase/firestore';
 
 export default function ({navigation}) {
     const {isDarkmode, setTheme} = useTheme();
@@ -40,6 +41,16 @@ export default function ({navigation}) {
                 }}
             >
                 {/* This text using ubuntu font */}
+                {
+                    firestore().collection('users')
+                    .get()
+                    .then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            console.log(doc.data())
+                            // <Text fontWeight="bold">doc.data()</Text>
+                        })
+                    })
+                }
                 <Text fontWeight="bold">This is the second screen</Text>
             </View>
         </Layout>
