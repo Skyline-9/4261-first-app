@@ -1,7 +1,17 @@
 import React from "react";
 import {Linking, View} from "react-native";
 import {getAuth, signOut} from "firebase/auth";
-import {Button, Layout, Section, SectionContent, Text, themeColor, TopNav, useTheme,} from "react-native-rapi-ui";
+import {
+    Button,
+    Layout,
+    Section,
+    SectionContent,
+    SectionImage,
+    Text,
+    themeColor,
+    TopNav,
+    useTheme,
+} from "react-native-rapi-ui";
 import {Ionicons} from "@expo/vector-icons";
 
 export default function ({navigation}) {
@@ -33,6 +43,12 @@ export default function ({navigation}) {
                     justifyContent: "center",
                 }}
             >
+                <Section>
+                    <SectionImage source={{uri: 'https://reactjs.org/logo-og.png'}}/>
+                    <SectionContent>
+                        <Text>This would be someone's post</Text>
+                    </SectionContent>
+                </Section>
                 <Section style={{marginTop: 20}}>
                     <SectionContent>
                         <Text fontWeight="bold" style={{textAlign: "center"}}>
