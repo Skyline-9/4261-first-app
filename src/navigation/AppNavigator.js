@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import firebase, {getApps, initializeApp} from "firebase/app";
+import {getApps, initializeApp} from "firebase/app";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {AuthContext} from "../provider/AuthProvider";
@@ -8,6 +8,7 @@ import {API_KEY, APP_ID, AUTH_DOMAIN, DATABASE_URL, MESSAGING_SENDER_ID, PROJECT
 // Main
 import Home from "../screens/Home";
 import SecondScreen from "../screens/SecondScreen";
+import InfoScreen from "../screens/InfoScreen";
 
 // Auth screens
 import Login from "../screens/auth/Login";
@@ -57,6 +58,7 @@ const Main = () => {
         >
             <MainStack.Screen name="Home" component={Home}/>
             <MainStack.Screen name="SecondScreen" component={SecondScreen}/>
+            <MainStack.Screen name="InfoScreen" component={InfoScreen}/>
         </MainStack.Navigator>
     );
 };

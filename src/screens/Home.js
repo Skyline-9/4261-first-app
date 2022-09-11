@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Linking, View} from "react-native";
 import {getAuth, signOut} from "firebase/auth";
-import {collection, getDocs, getFirestore} from 'firebase/firestore';
+import {collection, getFirestore, onSnapshot, query} from 'firebase/firestore';
 import {
     Button,
     Layout,
@@ -22,10 +22,11 @@ export default function ({navigation}) {
     const [users, setUsers] = useState("");
 
     const getUpdates = async () => {
-        const users = collection(firestore, 'users')
-        const usersQuerySnapshot = await getDocs(users);
-        usersQuerySnapshot.docs.forEach((doc) => {
-            console.log(doc.id, doc.data());
+        const q = query(collection(firestore, 'users'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+            });
         });
     }
 
@@ -97,6 +98,15 @@ export default function ({navigation}) {
                             text="Go to second screen"
                             onPress={() => {
                                 navigation.navigate("SecondScreen");
+                            }}
+                            style={{
+                                marginTop: 10,
+                            }}
+                        />
+                        <Button
+                            text="Go to info screen"
+                            onPress={() => {
+                                navigation.navigate("InfoScreen");
                             }}
                             style={{
                                 marginTop: 10,
