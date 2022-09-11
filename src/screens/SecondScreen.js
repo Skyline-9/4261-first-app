@@ -16,21 +16,25 @@ export default function ({navigation}) {
     const user = auth.currentUser;
 
     const firestore = getFirestore();
-    const entityRef = collection(firestore, 'entities');
+    const entityRef = collection(firestore, 'users');
 
     //TODO
     const onAddButtonPress = async () => {
+        console.log(entityRef)
         if (entityText && entityText.length > 0) {
             const timestamp = serverTimestamp();
             const data = {
+                // text: entityText,
+                // userName: user.email,
+                // createdAt: timestamp,
                 text: entityText,
-                userName: user.displayName,
-                createdAt: timestamp,
+                userName: user.email,
+                createdAt: timestamp
             };
-
+            console.log(user)
             console.log('Adding');
 
-            await setDoc(doc(entityRef, 'Admin'), data)
+            await setDoc(doc(entityRef, user.email), data)
                 .then(docRef => {
                     setEntityText('');
                     Keyboard.dismiss();
