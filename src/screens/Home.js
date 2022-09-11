@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {Linking, View} from "react-native";
 import {getAuth, signOut} from "firebase/auth";
-import firebase from '@firebase/app'
-import {collection, doc, getDocs, getFirestore, serverTimestamp, setDoc} from 'firebase/firestore';
+import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import {
     Button,
     Layout,
@@ -16,39 +15,47 @@ import {
 } from "react-native-rapi-ui";
 import {Ionicons} from "@expo/vector-icons";
 
-export default async function ({navigation}) {
+export default function ({navigation}) {
     const {isDarkmode, setTheme} = useTheme();
     const auth = getAuth();
     const firestore = getFirestore();
-    const entityRef = collection(firestore, 'users');
-    // firestore().collection('users').get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.data());
-    //     });
-    // });
-    // const users = collection(firestore, 'users')
-    // const usersQuerySnapshot = await getDocs(users);
-    // usersQuerySnapshot.docs.forEach((doc) => {
-    //     console.log(doc.id, doc.data());
-    // })
-    useEffect(() => {
-        entityRef
-            .onSnapshot(
-                querySnapshot => {
-                    const newEntities = []
-                    querySnapshot.forEach(doc => {
-                        const entity = doc.data()
-                        entity.id = doc.id
-                        newEntities.push(entity)
-                    });
-                    setEntities(newEntities)
-                },
-                error => {
-                    console.log(error)
-                }
-            )
-    }, [])
+    const [users, setUsers] = useState("");
+
+    const getUpdates = async () => {
+        firestore().collection('users').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.data());
+            });
+        });
+        const users = collection(firestore, 'users')
+        const usersQuerySnapshot = await getDocs(users);
+        usersQuerySnapshot.docs.forEach((doc) => {
+            console.log(doc.id, doc.data());
+        });
+    }
+
+    getUpdates().then(() => console.log(users));
+
+
+    // const entityRef = collection(firestore, 'users');
+    // useEffect(() => {
+    //     entityRef
+    //         .onSnapshot(
+    //             querySnapshot => {
+    //                 const newEntities = []
+    //                 querySnapshot.forEach(doc => {
+    //                     const entity = doc.data()
+    //                     entity.id = doc.id
+    //                     newEntities.push(entity)
+    //                 });
+    //                 setEntities(newEntities)
+    //             },
+    //             error => {
+    //                 console.log(error)
+    //             }
+    //         )
+    // }, []);
 
     return (
         <Layout>
@@ -79,7 +86,6 @@ export default async function ({navigation}) {
                 <Section>
                     <SectionImage source={{uri: 'https://reactjs.org/logo-og.png'}}/>
                     <SectionContent>
-                        {console.log(users)}
                         <Text>This would be someone's post</Text>
                     </SectionContent>
                 </Section>
