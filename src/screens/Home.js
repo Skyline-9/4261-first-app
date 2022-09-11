@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {Linking, View} from "react-native";
 import {getAuth, signOut} from "firebase/auth";
+import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import {
     Button,
     Layout,
@@ -17,6 +18,38 @@ import {Ionicons} from "@expo/vector-icons";
 export default function ({navigation}) {
     const {isDarkmode, setTheme} = useTheme();
     const auth = getAuth();
+    const firestore = getFirestore();
+    const [users, setUsers] = useState("");
+
+    const getUpdates = async () => {
+        const users = collection(firestore, 'users')
+        const usersQuerySnapshot = await getDocs(users);
+        usersQuerySnapshot.docs.forEach((doc) => {
+            console.log(doc.id, doc.data());
+        });
+    }
+
+    getUpdates().then(() => console.log(users));
+
+    // const entityRef = collection(firestore, 'users');
+    // useEffect(() => {
+    //     entityRef
+    //         .onSnapshot(
+    //             querySnapshot => {
+    //                 const newEntities = []
+    //                 querySnapshot.forEach(doc => {
+    //                     const entity = doc.data()
+    //                     entity.id = doc.id
+    //                     newEntities.push(entity)
+    //                 });
+    //                 setEntities(newEntities)
+    //             },
+    //             error => {
+    //                 console.log(error)
+    //             }
+    //         )
+    // }, []);
+
     return (
         <Layout>
             <TopNav
