@@ -22,12 +22,6 @@ export default function ({navigation}) {
     const [users, setUsers] = useState("");
 
     const getUpdates = async () => {
-        firestore().collection('users').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.data());
-            });
-        });
         const users = collection(firestore, 'users')
         const usersQuerySnapshot = await getDocs(users);
         usersQuerySnapshot.docs.forEach((doc) => {
@@ -36,7 +30,6 @@ export default function ({navigation}) {
     }
 
     getUpdates().then(() => console.log(users));
-
 
     // const entityRef = collection(firestore, 'users');
     // useEffect(() => {
