@@ -4,9 +4,11 @@ Template starter with React Navigation and Firebase auth using React Context
 
 # Preview
 
-![](media/Auth.png)
-![](media/home_page.jpeg)
-![](media/info_screen.jpeg)
+<div style="display: inline-block;">
+<img src="media/Auth.png"  width="300">
+<img src="media/home_page.jpeg"  width="300">
+<img src="media/info_screen.jpeg"  width="300">
+</div>
 
 # Installation
 
