@@ -31,8 +31,6 @@ export default function ({navigation}) {
                 userName: user.email,
                 createdAt: timestamp
             };
-            console.log(user)
-            console.log('Adding');
 
             await setDoc(doc(entityRef, user.email), data)
                 .then(docRef => {
@@ -44,8 +42,6 @@ export default function ({navigation}) {
                     console.log('WHY BROKEN?!');
                     alert(error);
                 });
-
-            console.log('SUS?')
         }
     }
 
@@ -60,7 +56,7 @@ export default function ({navigation}) {
                         color={isDarkmode ? themeColor.white100 : themeColor.dark}
                     />
                 }
-                leftAction={() => navigation.goBack()}
+                leftAction={() => navigation.navigate("Home")}
                 rightContent={
                     <Ionicons
                         name={isDarkmode ? "sunny" : "moon"}
