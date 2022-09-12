@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Linking, View} from "react-native";
 import {getAuth, signOut} from "firebase/auth";
-import {collection, getDocs, getFirestore, query, where, onSnapshot} from 'firebase/firestore';
+import {collection, getFirestore, onSnapshot, query} from 'firebase/firestore';
 import {
     Button,
     Layout,
@@ -169,6 +169,15 @@ export default function ({navigation}) {
                             text="Update Status"
                             onPress={() => {
                                 navigation.navigate("SecondScreen");
+                            }}
+                            style={{
+                                marginTop: 10,
+                            }}
+                        />
+                        <Button
+                            text="Info Screen"
+                            onPress={() => {
+                                navigation.navigate("InfoScreen");
                             }}
                             style={{
                                 marginTop: 10,

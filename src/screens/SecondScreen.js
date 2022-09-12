@@ -20,7 +20,7 @@ export default function ({navigation}) {
 
     //TODO
     const onAddButtonPress = async () => {
-        console.log(entityRef)
+        // console.log(entityRef)
         if (entityText && entityText.length > 0) {
             const timestamp = serverTimestamp();
             const data = {
@@ -36,12 +36,13 @@ export default function ({navigation}) {
                 .then(docRef => {
                     setEntityText('');
                     Keyboard.dismiss();
-                    console.log('Completed successfully!'.concat(docRef));
+                    // console.log('Completed successfully!'.concat(docRef));
                 })
                 .catch((error) => {
                     console.log('WHY BROKEN?!');
                     alert(error);
                 });
+            
         }
     }
 
