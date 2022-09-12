@@ -1,8 +1,19 @@
 import React from "react";
 import AppNavigator from "./src/navigation/AppNavigator";
-import { AuthProvider } from "./src/provider/AuthProvider";
-import { ThemeProvider } from "react-native-rapi-ui";
-import { LogBox } from "react-native";
+import {AuthProvider} from "./src/provider/AuthProvider";
+import {ThemeProvider} from "react-native-rapi-ui";
+import {LogBox} from "react-native";
+
+import {decode, encode} from 'base-64';
+
+if (!global.btoa) {
+  global.btoa = encode
+}
+
+if (!global.atob) {
+  global.atob = decode
+}
+
 
 export default function App(props) {
   const images = [

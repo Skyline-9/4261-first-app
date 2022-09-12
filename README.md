@@ -4,7 +4,9 @@ Template starter with React Navigation and Firebase auth using React Context
 
 # Preview
 
-![../media/authflow.png](../media/authflow.png)
+![](media/Auth.png)
+![](media/home_page.jpeg)
+![](media/info_screen.jpeg)
 
 # Installation
 
@@ -50,16 +52,6 @@ const firebaseConfig = {
 };
 ```
 
-### Prebuilt UI Screens
-
-There are 3 screens included inside `./src/screens/auth` and one more thing its included with the firebase auth function, so you don't need to create the function. The ilustrations I use [undraw](https://undraw.co/)
-
-- Login screen `./src/screens/auth/login.tsx`
-- Register screen `./src/screens/auth/register.tsx`
-- Forget password screen `./src/screens/auth/forget.tsx`
-
-I personally use these screens on my project [TiktTeng](https://github.com/codingki/TikTeng) in early stages before the redesign, feel free to use these screens ❤️
-
 ### React Navigation Auth Flow
 
 The checking logged users process is inside `./src/provider/AuthProvider` I use React Context, you can add more functions like get the data of the user and store it to the context (better static data, ex: uid)
@@ -87,8 +79,6 @@ export default () => {
 
 ## Rapi UI
 
-![../media/hero.png](../media/hero.png)
-
 These UI components are provided by [Rapi UI](https://rapi-ui.kikiding.space/).
 Check the [documentation](https://rapi-ui.kikiding.space/docs/) for usage and more components.
 
@@ -103,11 +93,3 @@ These are the folders and the functionality
 /src/provider -> for React Context
 /src/screens -> for Screens
 ```
-
-# Links used
-- [Using Environmental Variables](https://medium.com/swlh/how-to-properly-use-environment-variables-in-an-expo-react-native-app-7ab852590b30)
-- [.dotenv Formatting](https://hexdocs.pm/dotenvy/dotenv-file-format.html)
-- [Firebase Config](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
-- [Cloud Firestore with React Native - Medium Article Tutorial](https://medium.com/geekculture/using-firestore-in-react-native-app-3995356e0b73)
-- [Rapi UI Library](https://rapi-ui.kikiding.space/docs/)
-- [Firestore Tutorial](https://www.freecodecamp.org/news/react-native-firebase-tutorial/)

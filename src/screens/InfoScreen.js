@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {View} from "react-native";
-import {Layout, Text, themeColor, TopNav, useTheme} from "react-native-rapi-ui";
+import {Layout, Section, SectionContent, Text, themeColor, TopNav, useTheme} from "react-native-rapi-ui";
 import {Ionicons} from "@expo/vector-icons";
 
 //Location
@@ -27,12 +27,13 @@ export default function ({navigation}) {
         })();
     }, []);
 
-    let text = 'Waiting..';
+    let latitudeText = 'Waiting...';
+    let longitudeText = 'Waiting...'
     if (errorMsg) {
         text = errorMsg;
     } else if (location) {
-        text = `Latitude: ${location.coords.latitude}
-        Longitude: ${location.coords.longitude}`;
+        latitudeText = `Latitude: ${location.coords.latitude}`
+        longitudeText = `Longitude: ${location.coords.longitude}`;
     }
 
     //Start IP Tracking
@@ -70,14 +71,16 @@ export default function ({navigation}) {
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                paddingHorizontal: 20,
-                paddingBottom: 20,
-                backgroundColor: isDarkmode ? themeColor.dark : themeColor.white,
             }}
         >
-            <Text fontWeight="bold">User Info</Text>
-            <Text>{ipText}</Text>
-            <Text>{text}</Text>
+            <Section>
+                <SectionContent>
+                    <Text fontWeight="bold">User Info</Text>
+                    <Text>IP: {ipText}</Text>
+                    <Text>{latitudeText}</Text>
+                    <Text>{longitudeText}</Text>
+                </SectionContent>
+            </Section>
         </View>
     </Layout>);
 }

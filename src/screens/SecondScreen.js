@@ -11,14 +11,12 @@ export default function ({navigation}) {
     const {isDarkmode, setTheme} = useTheme();
     const [entityText, setEntityText] = useState("");
 
-    //TODO
     const auth = getAuth();
     const user = auth.currentUser;
 
     const firestore = getFirestore();
     const entityRef = collection(firestore, 'users');
 
-    //TODO
     const onAddButtonPress = async () => {
         // console.log(entityRef)
         if (entityText && entityText.length > 0) {
@@ -36,10 +34,8 @@ export default function ({navigation}) {
                 .then(docRef => {
                     setEntityText('');
                     Keyboard.dismiss();
-                    // console.log('Completed successfully!'.concat(docRef));
                 })
                 .catch((error) => {
-                    console.log('WHY BROKEN?!');
                     alert(error);
                 });
             
@@ -83,8 +79,7 @@ export default function ({navigation}) {
                     backgroundColor: isDarkmode ? themeColor.dark : themeColor.white,
                 }}
             >
-                <Text fontWeight="bold">This is the second screen</Text>
-                <Text style={{marginBottom: 10}}>TextInput</Text>
+                <Text fontWeight="bold" style={{marginBottom: 40}}>This is the second screen</Text>
                 <TextInput
                     placeholder="Enter your text"
                     value={entityText}

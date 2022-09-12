@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {getApps, initializeApp} from "firebase/app";
+import {initializeFirestore} from 'firebase/firestore';
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {AuthContext} from "../provider/AuthProvider";
@@ -27,8 +28,10 @@ const firebaseConfig = {
     messagingSenderId: MESSAGING_SENDER_ID,
     appId: APP_ID,
 };
+
 if (getApps().length === 0) {
-    initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
+    initializeFirestore(app, {experimentalForceLongPolling: true, merge: true})
 }
 
 const AuthStack = createNativeStackNavigator();
